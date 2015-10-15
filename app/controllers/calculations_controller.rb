@@ -71,12 +71,12 @@ class CalculationsController < ApplicationController
     #   number of seconds as a result.
     # ================================================================================
 
-    @seconds = "Replace this string with your answer."
-    @minutes = "Replace this string with your answer."
-    @hours = "Replace this string with your answer."
-    @days = "Replace this string with your answer."
-    @weeks = "Replace this string with your answer."
-    @years = "Replace this string with your answer."
+    @seconds = @ending - @starting
+    @minutes = @seconds/60
+    @hours = @minutes/60
+    @days = @hours/24
+    @weeks = @days/7
+    @years = @weeks/52
 
     # ================================================================================
     # Your code goes above.
@@ -93,25 +93,37 @@ class CalculationsController < ApplicationController
     # The numbers the user input are in the array @numbers.
     # ================================================================================
 
-    @sorted_numbers = "Replace this string with your answer."
+    @sorted_numbers = @numbers.sort
 
-    @count = "Replace this string with your answer."
+    @count = @numbers.count
 
-    @minimum = "Replace this string with your answer."
+    @minimum = @numbers.sort[0]
 
-    @maximum = "Replace this string with your answer."
+    @maximum = @numbers.sort[-1]
 
-    @range = "Replace this string with your answer."
+    @range = @maximum - @minimum
 
-    @median = "Replace this string with your answer."
+    midLength = @sorted_numbers.length/2
 
-    @sum = "Replace this string with your answer."
+    @median = @sorted_numbers[midLength]
 
-    @mean = "Replace this string with your answer."
+    @sum = @numbers.reduce :+
 
-    @variance = "Replace this string with your answer."
+    @mean = @sum/@count
 
-    @standard_deviation = "Replace this string with your answer."
+    y=0
+    w=0
+
+    @numbers.each do |num|
+        y = @mean - num
+        y = y*y
+        w = w + y
+    end
+
+
+    @variance = w
+
+    @standard_deviation = Math.sqrt(w)
 
     @mode = "Replace this string with your answer."
 
