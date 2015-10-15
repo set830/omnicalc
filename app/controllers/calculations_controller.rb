@@ -111,8 +111,8 @@ class CalculationsController < ApplicationController
 
     @mean = @sum/@count
 
-    y=0
-    w=0
+    y = 0
+    w = 0
 
     @numbers.each do |num|
         y = @mean - num
@@ -125,7 +125,28 @@ class CalculationsController < ApplicationController
 
     @standard_deviation = Math.sqrt(w)
 
-    @mode = "Replace this string with your answer."
+    r = @numbers[0]
+    s = @numbers[-1]
+    c = 0
+    d = 0
+
+    @numbers.each do |bers|
+        if bers == r
+            c = c + 1
+        end
+        if bers == s
+            d = d + 1
+        end
+    end
+
+    if c > d
+        e = r
+    else
+        e = s
+    end
+
+
+    @mode = e
 
     # ================================================================================
     # Your code goes above.
